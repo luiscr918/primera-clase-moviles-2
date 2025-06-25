@@ -6,7 +6,7 @@ export const LoginScreen = ({ navigation }: any) => {
     <View style={styles.container}>
       <Text style={[{ fontSize: 50 }, styles.txt]}>LoginScreen</Text>
       <TouchableOpacity style={styles.btn}
-      onPress={()=>navigation.navigate("Calculadora")}
+      onPress={()=>navigation.navigate("Tab")}
       >
         <View style={styles.fila}>
           <Text style={styles.txt}>Ir a Calculadora</Text>
