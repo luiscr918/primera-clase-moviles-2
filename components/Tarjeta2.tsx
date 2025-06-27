@@ -27,21 +27,23 @@ export const Tarjeta2 = (props: Datum) => {
         <Image style={styles.img} source={{ uri: props.image }} />
       </TouchableOpacity>
       <Modal visible={visible} transparent animationType="fade">
-        <View style={styles.modal}>
-          <Button title="CERRAR" onPress={() => setVisible(!visible)} />
-          <FlatList
-            data={[props]}
-            renderItem={({ item }) =>
-              <View style={{ alignContent: 'center',justifyContent:'center' }}>
-                <Text>{item.name}</Text>
-                <Image
-                  style={styles.img}
-                  source={{ uri: item.image }}
-                />
-                <Text>{item.description}</Text>
-              </View>
-            }
-          />
+        <View style={styles.centeredView}>
+          <View style={styles.modal}>
+            <Button title="CERRAR" onPress={() => setVisible(!visible)} />
+            <FlatList
+              data={[props]}
+              renderItem={({ item }) =>
+                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                  <Text style={{ fontSize: 22, fontWeight: "bold", marginBottom: 8 }}>{item.name}</Text>
+                  <Image
+                    style={styles.img}
+                    source={{ uri: item.image }}
+                  />
+                  <Text style={{ marginTop: 8, textAlign: "center" }}>{item.description}</Text>
+                </View>
+              }
+            />
+          </View>
         </View>
       </Modal>
     </View>
@@ -49,6 +51,12 @@ export const Tarjeta2 = (props: Datum) => {
 };
 
 const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   modal: {
     backgroundColor: "rgba(255,255,255,0.97)",
     margin: 30,

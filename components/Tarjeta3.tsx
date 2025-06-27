@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import { Pelicula } from "../screens/listas/PeliculasScreen";
 import { FlatList } from "react-native-gesture-handler";
+import { ModalPelicula } from "./ModalPelicula";
 
 export const Tarjeta3 = (props: Pelicula) => {
 
@@ -20,23 +21,19 @@ export const Tarjeta3 = (props: Pelicula) => {
         <Image style={styles.img} source={{ uri: props.imagen }} />
         <Text style={styles.mainTitle}>Title: {props.titulo}</Text>
         <Text style={styles.mainTitle}>Director: {props.director}</Text>
-        <Button onPress={()=>setVisible(!visible)} title="Ver mas" />
+        <Button onPress={() => setVisible(!visible)} title="Ver mas" />
       </TouchableOpacity>
       <Modal visible={visible} transparent animationType="fade">
-        <View style={styles.modal}>
-          <Button title="CERRAR" onPress={() => setVisible(!visible)} />
-          <FlatList
-            data={[props]}
-            renderItem={({ item }) => (
-              <View
-                style={{ alignContent: "center", justifyContent: "center" }}
-              >
-                <Text>{item.descripcion}</Text>
-                <Image style={styles.img} source={{ uri: item.imagen }} />
-                <Text>{item.anio}</Text>
-              </View>
-            )}
-          />
+        <View style={styles.centeredView}>
+          <View style={styles.modal}>
+            <Button title="CERRAR" onPress={() => setVisible(!visible)} />
+            <FlatList
+              data={[props]}
+              renderItem={({ item }) => (
+                <ModalPelicula {...props} />
+              )}
+            />
+          </View>
         </View>
       </Modal>
     </View>
@@ -44,7 +41,14 @@ export const Tarjeta3 = (props: Pelicula) => {
 };
 
 const styles = StyleSheet.create({
-    modal: {
+
+  centeredView: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modal: {
     backgroundColor: "rgba(255,255,255,0.97)",
     margin: 30,
     borderRadius: 20,
@@ -57,6 +61,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     minHeight: 300,
   },
+
   mainTitle: {
     fontSize: 25,
     fontWeight: "bold",
