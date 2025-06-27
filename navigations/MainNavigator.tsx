@@ -10,6 +10,7 @@ import { FormularioScreen } from "../screens/FormularioScreen";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { ListaLocalScreen } from "../screens/listas/ListaLocalScreen";
 import { ListaExternaScreen } from "../screens/listas/ListaExternaScreen";
+import { PeliculasScreen } from "../screens/listas/PeliculasScreen";
 const Stack = createStackNavigator();
 
 const Top = createMaterialTopTabNavigator();
@@ -18,6 +19,7 @@ const MyTop = () => {
     <Top.Navigator>
       <Top.Screen name="Local" component={ListaLocalScreen} />
       <Top.Screen name="Externo" component={ListaExternaScreen} />
+      <Top.Screen name="Peliculas" component={PeliculasScreen} />
     </Top.Navigator>
   );
 };
