@@ -8,8 +8,36 @@ import {
 } from "react-native";
 import React from "react";
 
-export const Tarjeta = (props: any) => {
-  const mostrarMas = (data: any) => {
+export interface Props {
+  name: Name;
+  images: Images;
+  gender: Gender;
+  species: string;
+  homePlanet?: string;
+  occupation: string;
+  sayings: string[];
+  id: number;
+  age: string;
+}
+
+export enum Gender {
+  Female = "Female",
+  Male = "Male",
+}
+
+export interface Images {
+  "head-shot": string;
+  main: string;
+}
+
+export interface Name {
+  first: string;
+  middle: string;
+  last: string;
+}
+
+export const Tarjeta = (props: Props) => {
+  const mostrarMas = (data: Props) => {
     Alert.alert(
       "Informacion",
       data.name.first + " trabaja como " + data.occupation
@@ -18,19 +46,18 @@ export const Tarjeta = (props: any) => {
   return (
     <TouchableOpacity
       style={styles.btn}
-      onPress={() => mostrarMas(props.informacion)}
+      onPress={() => mostrarMas(props)}
     >
       <View style={styles.cardContainer}>
         <View style={styles.containerImg}>
           <Image
             style={styles.img}
-            source={{ uri: props.informacion.images.main }}
-            
+            source={{ uri: props.images.main }}
           />
         </View>
         <View style={styles.containerInfo}>
           <Text style={styles.txt}>
-            {props.informacion.name.first} {props.informacion.name.last}
+            {props.name.first} {props.name.last}
           </Text>
         </View>
       </View>
@@ -39,15 +66,15 @@ export const Tarjeta = (props: any) => {
 };
 
 const styles = StyleSheet.create({
-    containerImg:{
-        padding:35,
-        backgroundColor:'#8c1c92'
-    },
-    containerInfo:{
-        width:'100%',
-        padding:50,
-        justifyContent:'center',
-    },
+  containerImg: {
+    padding: 35,
+    backgroundColor: "#8c1c92",
+  },
+  containerInfo: {
+    width: "100%",
+    padding: 50,
+    justifyContent: "center",
+  },
   cardContainer: {
     flexDirection: "row",
     alignContent: "space-evenly",
